@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <meta content="email=no" name="format-detection">
+  <title>Document</title>
+
+  <script src="__PUBLIC__/js/jquery.js"></script>
+  <script src="__PUBLIC__/js/layer/layer.js"></script>
+  <script src="__PUBLIC__/echarts/dist/echarts.min.js"></script>
+
+<style type="text/css">
+	*{margin: 0;padding: 0;box-sizing: border-box;-webkit-overflow-scrolling: touch;}
+	.cursor:hover{cursor: pointer;}
+	.index{width: 100vw;height: 100vh;overflow: hidden;background: #f4f4f4;min-width: 1200px;display: flex;flex-direction: column;}
+	i{font-style: normal;}
+	*::-webkit-scrollbar {display:none}
+	.cursor{cursor: pointer;}
+	/*头部*/
+	.head-group{width: 100%;background: #16467b;padding: 15px 5%;display: flex;align-items: center;height: 115px;}
+	.left-area{width: 23%;}
+	.left-area img{width: 55%;display: block;margin: 0 auto;}
+	.right-area{width: 90%;padding-left: 15%;display: flex;align-items: center;justify-content: space-between;}
+	.home-group{width: 42px;height: 42px;}
+	.home-group:hover{cursor: pointer;}
+	.home-group img{width: 100%;}
+	.quit-group{display: flex;align-items: center;color: #fff;}
+	.quit-group img{width: 24px;height: 30px;}
+	.quit-group span{font-size: 24px;color: #fff;display: block;margin-left: 5px;}
+	.quit-group:hover{cursor: pointer;}
+
+/*内容区*/
+.content{width: 100%; background: #f4f4f4;display: flex;padding: 0px 5%;flex: 1;}
+.personal{width: 20%;overflow: hidden;height: 100%;background: #16467b;}
+.personal-main{width: 100%;height: 100%;}
+.information{width: 100%;}
+.information-group{width: 100%;}
+.information-area{width: 100%;color: #fff;font-size: 16px;display: flex;justify-content: center;align-items: center;line-height: 40px;}
+.information-area-active{background: #fff;color: #1C9AD2;padding: 3px 5px;border-left: 10px solid #008ECD;}
+.son-active{background: #fff;color: #1C9AD2;padding: 3px 5px;}
+
+.infor-area-two{width: 100%;text-align: center;color: #fff;font-size: 14px;display: none;}
+.infor-area-two-son{line-height: 40px;}
+.infor-area-son-area{line-height: 35px;}
+.infor-area-son-area span{margin-left: 30px;}
+.infor-area-son{display: none;}
+
+.content-main{width: 80%;}
+.content-group{width: 100%;height: 100%;padding-left: 10px;overflow: hidden; overflow-y: scroll;padding-bottom: 20px;}
+.content-title{height: 46px;line-height: 46px;font-weight: bold;font-size: 16px;}
+.content-cen{width: 100%;margin-top: 15px;}
+.content-cen-area{background: url("__PUBLIC__/image/boston/bg01.png") no-repeat;background-size: 100% 100%;padding: 10px 20px;}
+.content-cen-area-top{font-size: 22px;color: #fff;font-weight: bold;display: flex;flex-direction: column;}
+.content-cen-area-bom{display: flex;justify-content: space-between;align-items: center;padding: 15px 10%;color: #fff;padding-left: 135px;}
+.content-cen-area-bom div{display: flex;flex-direction: column;align-items: center;}
+
+@media screen and (max-width: 1600px){
+	.head-group{height: 80px;}
+	.left-area img{width: 50%;}
+	.home-group{width: 30px;height: 30px;}
+	.quit-group span{font-size: 16px;}
+	.quit-group img{width: 20px;height: 26px;}
+}
+    </style>
+</head>
+<body>
+	<div class="index">
+		<!-- 头部 -->
+		<div class="head-group">
+		  <div class="left-area">
+		    <img src="__PUBLIC__/image/boston/logo.png" alt="">
+		  </div>
+		  <div class="right-area">
+		    <div class="home-group">
+		      <img src="__PUBLIC__/image/boston/home.png" alt="">
+		    </div>
+		    <div class="quit-group">
+		      <img src="__PUBLIC__/image/boston/quit.png" alt="">
+		        <span>退出</span>
+		    </div>
+		  </div>
+		</div>
+		<!-- 内容区 -->
+		<div class="content">
+			<div class="personal">
+				<div class="personal-main">
+					<div class="information">
+						<div class="information-group">
+							<!-- 一级 -->
+							<div class="information-area information-area-active cursor">
+								<span>CEOl列表</span>
+							</div>
+							<div class="infor-area-two">
+								<div class="infor-area-two-list">
+									<span class="cursor infor-area-two-son son-active">培训中心1</span>
+									<div class="infor-area-son">
+										<div class="infor-area-son-area cursor"><span>讲师管理</span> </div>
+										<div class="infor-area-son-area cursor"><span>学员管理</span></div>
+										<div class="infor-area-son-area cursor"><span>课程管理</span></div>
+										<div class="infor-area-son-area cursor"><span>会议管理</span></div>
+									</div>
+								</div>
+								<div class="infor-area-two-list">
+									<span class="cursor infor-area-two-son">培训中心2</span>
+									<div class="infor-area-son">
+										<div class="infor-area-son-area cursor"><span>讲师管理</span> </div>
+										<div class="infor-area-son-area cursor"><span>学员管理</span></div>
+										<div class="infor-area-son-area cursor"><span>课程管理</span></div>
+										<div class="infor-area-son-area cursor"><span>会议管理</span></div>
+									</div>
+								</div>
+								<div class="infor-area-two-list">
+									<span class="cursor infor-area-two-son">培训中心3</span>
+									<div class="infor-area-son">
+										<div class="infor-area-son-area cursor"><span>讲师管理</span> </div>
+										<div class="infor-area-son-area cursor"><span>学员管理</span></div>
+										<div class="infor-area-son-area cursor"><span>课程管理</span></div>
+										<div class="infor-area-son-area cursor"><span>会议管理</span></div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						<div class="information-group">
+							<!-- 一级 -->
+							<div class="information-area cursor">
+								<span>销售管理</span>
+							</div>
+							<div class="infor-area-two">
+								<div class="infor-area-two-list">
+									<span class="cursor infor-area-two-son son-active">培训中心1</span>
+									<div class="infor-area-son">
+										<div class="infor-area-son-area cursor"><span>讲师管理</span> </div>
+										<div class="infor-area-son-area cursor"><span>学员管理</span></div>
+										<div class="infor-area-son-area cursor"><span>课程管理</span></div>
+										<div class="infor-area-son-area cursor"><span>会议管理</span></div>
+									</div>
+								</div>
+								<div class="infor-area-two-list">
+									<span class="cursor infor-area-two-son">培训中心2</span>
+									<div class="infor-area-son">
+										<div class="infor-area-son-area cursor"><span>讲师管理</span> </div>
+										<div class="infor-area-son-area cursor"><span>学员管理</span></div>
+										<div class="infor-area-son-area cursor"><span>课程管理</span></div>
+										<div class="infor-area-son-area cursor"><span>会议管理</span></div>
+									</div>
+								</div>
+								<div class="infor-area-two-list">
+									<span class="cursor infor-area-two-son">培训中心3</span>
+									<div class="infor-area-son">
+										<div class="infor-area-son-area cursor"><span>讲师管理</span> </div>
+										<div class="infor-area-son-area cursor"><span>学员管理</span></div>
+										<div class="infor-area-son-area cursor"><span>课程管理</span></div>
+										<div class="infor-area-son-area cursor"><span>会议管理</span></div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						<div class="information-group">
+							<!-- 一级 -->
+							<div class="information-area cursor">
+								<span>账号管理</span>
+							</div>
+							<div class="infor-area-two">
+								<div class="infor-area-two-list">
+									<span class="cursor infor-area-two-son son-active">培训中心1</span>
+									<div class="infor-area-son">
+										<div class="infor-area-son-area cursor"><span>讲师管理</span> </div>
+										<div class="infor-area-son-area cursor"><span>学员管理</span></div>
+										<div class="infor-area-son-area cursor"><span>课程管理</span></div>
+										<div class="infor-area-son-area cursor"><span>会议管理</span></div>
+									</div>
+								</div>
+								<div class="infor-area-two-list">
+									<span class="cursor infor-area-two-son">培训中心2</span>
+									<div class="infor-area-son">
+										<div class="infor-area-son-area cursor"><span>讲师管理</span> </div>
+										<div class="infor-area-son-area cursor"><span>学员管理</span></div>
+										<div class="infor-area-son-area cursor"><span>课程管理</span></div>
+										<div class="infor-area-son-area cursor"><span>会议管理</span></div>
+									</div>
+								</div>
+								<div class="infor-area-two-list">
+									<span class="cursor infor-area-two-son">培训中心3</span>
+									<div class="infor-area-son">
+										<div class="infor-area-son-area cursor"><span>讲师管理</span> </div>
+										<div class="infor-area-son-area cursor"><span>学员管理</span></div>
+										<div class="infor-area-son-area cursor"><span>课程管理</span></div>
+										<div class="infor-area-son-area cursor"><span>会议管理</span></div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="content-main" style="">
+				<div class="content-group">
+					<div class="content-title"><span>CEO列表</span></div>
+
+					<!-- 循环块 -->
+					<div class="content-cen">
+						<div class="content-cen-area">
+							<div class="content-cen-area-top">
+								<span>培训中心1</span><span>NO1</span>
+							</div>
+							<div class="content-cen-area-bom">
+								<div>
+									<span style="font-weight: bold;">平台讲师</span>
+									<span style="font-size: 32px;font-weight: bold;">16 <i style="font-size: 20px;">人</i></span>
+								</div>
+								<div>
+									<span style="font-weight: bold;">平台学员</span>
+									<span style="font-size: 32px;font-weight: bold;">16 <i style="font-size: 20px;">人</i></span>
+								</div>
+								<div>
+									<span style="font-weight: bold;">培训数量</span>
+									<span style="font-size: 32px;font-weight: bold;">16 <i style="font-size: 20px;">场</i></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="content-cen">
+						<div class="content-cen-area">
+							<div class="content-cen-area-top">
+								<span>培训中心1</span><span>NO1</span>
+							</div>
+							<div class="content-cen-area-bom">
+								<div>
+									<span style="font-weight: bold;">平台讲师</span>
+									<span style="font-size: 32px;font-weight: bold;">16 <i style="font-size: 20px;">人</i></span>
+								</div>
+								<div>
+									<span style="font-weight: bold;">平台学员</span>
+									<span style="font-size: 32px;font-weight: bold;">16 <i style="font-size: 20px;">人</i></span>
+								</div>
+								<div>
+									<span style="font-weight: bold;">培训数量</span>
+									<span style="font-size: 32px;font-weight: bold;">16 <i style="font-size: 20px;">场</i></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="content-cen">
+						<div class="content-cen-area">
+							<div class="content-cen-area-top">
+								<span>培训中心1</span><span>NO1</span>
+							</div>
+							<div class="content-cen-area-bom">
+								<div>
+									<span style="font-weight: bold;">平台讲师</span>
+									<span style="font-size: 32px;font-weight: bold;">16 <i style="font-size: 20px;">人</i></span>
+								</div>
+								<div>
+									<span style="font-weight: bold;">平台学员</span>
+									<span style="font-size: 32px;font-weight: bold;">16 <i style="font-size: 20px;">人</i></span>
+								</div>
+								<div>
+									<span style="font-weight: bold;">培训数量</span>
+									<span style="font-size: 32px;font-weight: bold;">16 <i style="font-size: 20px;">场</i></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+	$(".information-area:first").next().slideDown();
+	var winHeight = $(window).height();
+	var headHeight = $(".head-group").height();
+	// $(".content-main").css({"height": winHeight - headHeight +'px'});
+	$(".information-area").click(function(){
+		$(this).parent().siblings().find(".information-area").removeClass("information-area-active");
+		$(this).addClass("information-area-active");
+		$(this).parent().siblings().find(".infor-area-two").slideUp();
+		$(this).next().slideToggle();
+	});
+
+	$(".infor-area-two-son").click(function(){
+		$(this).parent().siblings().find(".infor-area-two-son").removeClass("son-active");
+		$(this).parent().siblings().find(".infor-area-son").slideUp();
+		$(this).addClass("son-active");
+		$(this).next().slideToggle();
+	});
+
+	$(".infor-area-son-area").click(function(){
+		$(this).siblings().find("span").removeClass("son-active");
+		$(this).find("span").addClass("son-active");
+	})
+</script>	
+</body>
+</html>
