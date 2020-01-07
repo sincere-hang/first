@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <meta content="email=no" name="format-detection">
+  <title>Document</title>
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+  <script src="__PUBLIC__/js/jquery.js"></script>
+  <script src="__PUBLIC__/js/layer/layer.js"></script>
+  <script src="__PUBLIC__/address/three/js/distpicker.data.js"></script>
+  <script src="__PUBLIC__/address/three/js/distpicker.js"></script>
+
+<style type="text/css">
+	*{margin: 0;padding: 0;box-sizing: border-box;-webkit-overflow-scrolling: touch;}
+	.cursor:hover{cursor: pointer;}
+	.index{width: 100vw;height: 100vh;overflow: hidden;background: #f4f4f4;min-width: 1200px;display: flex;flex-direction: column;}
+	i{font-style: normal;}
+	*::-webkit-scrollbar {display:none}
+	.cursor{cursor: pointer;}
+	/*头部*/
+	.head-group{width: 100%;background: #16467b;padding: 15px 5%;display: flex;align-items: center;height: 115px;}
+	.left-area{width: 23%;}
+	.left-area img{width: 55%;display: block;margin: 0 auto;}
+	.right-area{width: 90%;padding-left: 15%;display: flex;align-items: center;justify-content: space-between;}
+	.home-group{width: 42px;height: 42px;}
+	.home-group:hover{cursor: pointer;}
+	.home-group img{width: 100%;}
+	.quit-group{display: flex;align-items: center;color: #fff;}
+	.quit-group img{width: 24px;height: 30px;}
+	.quit-group span{font-size: 24px;color: #fff;display: block;margin-left: 5px;}
+	.quit-group:hover{cursor: pointer;}
+
+/*内容区*/
+.content{width: 100%; background: #f4f4f4;display: flex;padding: 0px 5%;flex: 1;}
+.personal{width: 20%;overflow: hidden;height: 100%;background: #16467b;}
+.personal-main{width: 100%;height: 100%;}
+.information{width: 100%;}
+.information-group{width: 100%;}
+.information-area{width: 100%;color: #fff;font-size: 16px;display: flex;justify-content: center;align-items: center;line-height: 40px;}
+.information-area-active{background: #fff;color: #1C9AD2;padding: 3px 5px;border-left: 10px solid #008ECD;}
+.son-active{background: #fff;color: #1C9AD2;padding: 3px 5px;}
+
+.infor-area-two{width: 100%;text-align: center;color: #fff;font-size: 16px;display: none;}
+.infor-area-two-son{line-height: 40px;}
+.infor-area-son-area{line-height: 35px;}
+.infor-area-son-area span{margin-left: 30px;}
+.infor-area-son{display: none;}
+
+.content-main{width: 80%;}
+.content-group{width: 100%;height: 100%;padding-left: 10px;overflow: hidden; overflow-y: scroll;padding-bottom: 20px;}
+.content-title{height: 46px;line-height: 46px;font-weight: bold;font-size: 16px;display: flex;justify-content: space-between;align-items: center;}
+
+.table-main{width: 100%;border: 1px solid #ddd;background: #fff;padding: 15px;}
+.search-group{width: 100%;}
+.search-area{width: 30%;display: flex;justify-content: space-between;align-items: center;border: 1px solid #ddd;border-radius: 5px;overflow: hidden;padding-left: 3px;}
+.search-inp{border: none;}
+
+/*弹框*/
+.masking{width: 100vw;height: 100vh;background: rgba(0,0,0,0.8);position: absolute;top: 0;left: 0;z-index: 9;display: none;}
+.mask-main{width: 50%;background: #fff;border-radius: 8px;height: 500px;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%) scale(0.6);z-index: -1;padding: 15px;transition: 0.3s;opacity: 0}
+.mask-main-active{transform: translate(-50%,-50%) scale(1);z-index: 99;opacity: 1;}
+.mask-area{display: flex;align-items: center;margin-top: 15px;}
+.mask-area-left{font-size: 18px;margin-right: 15px;width: 120px;}
+.mask-area-right{width: 100%;}
+#select_pingtai{width: 200px;height: 35px;border-radius: 8px;border: 1px solid #ddd;background: none;}
+.mask-area-right input{width: 200px;height: 35px;padding: 3px 5px;border: 1px solid #ddd;border-radius: 8px;outline: none;}
+.doctor-mask-btn{width: 30%;display: flex;justify-content: space-between;align-items: center;margin: 0 auto;margin-top: 20px;}
+.affirm-btn,.cancel-btn,.add-btn{color: #fff;font-size: 16px;background: #308ECC;margin-left: 15px;width: 95px;text-align: center;line-height: 35px;border-radius: 8px;}
+.cancel-btn{background: #fff;color: #000;border: 1px solid #ddd;}
+@media screen and (max-width: 1600px){
+	.head-group{height: 80px;}
+	.left-area img{width: 50%;}
+	.home-group{width: 30px;height: 30px;}
+	.quit-group span{font-size: 16px;}
+	.quit-group img{width: 20px;height: 26px;}
+}
+
+.content-list-main{width: 100%;display: flex;margin: 15px 0;}
+.content-list-area{margin-right: 15px;position: relative;}
+.content-list-area span{position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);display: block;color: #fff;font-weight: bold;font-size: 30px;}
+</style>
+</head>
+<body>
+	<div class="index">
+		<!-- 头部 -->
+		<div class="head-group">
+		  <div class="left-area">
+		    <img src="__PUBLIC__/image/boston/logo.png" alt="">
+		  </div>
+		  <div class="right-area">
+		    <div class="home-group">
+		      <img src="__PUBLIC__/image/boston/home.png" alt="">
+		    </div>
+		    <div class="quit-group">
+		      <img src="__PUBLIC__/image/boston/quit.png" alt="">
+		        <span>退出</span>
+		    </div>
+		  </div>
+		</div>
+		<!-- 内容区 -->
+		<div class="content">
+			<div class="personal">
+				<div class="personal-main">
+					<div class="information">
+						<div class="information-group">
+							<!-- 一级 -->
+							<div class="information-area cursor">
+								<span>CEOl列表</span>
+							</div>
+							
+						</div>
+						<div class="information-group">
+							<!-- 一级 -->
+							<div class="information-area information-area-active cursor">
+								<span>销售管理</span>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="content-main" style="">
+				<div class="content-group">
+					<div class="content-list-main">
+						<div class="content-list-area">
+							<img src="__PUBLIC__/image/boston/list-gray.png" alt="">
+							<span>讲师列表</span>
+						</div>
+						<div class="content-list-area">
+							<img src="__PUBLIC__/image/boston/student-img.png" alt="">
+							<span>学员列表</span>
+						</div>
+					</div>
+					<div class="table-main">
+						<div class="search-group">
+							<div class="search-area">
+								<i class="layui-icon layui-icon-search cursor"></i>
+								<input type="text" class="layui-input search-inp">
+							</div>
+						</div>
+						<div class="table-group">
+							<table class="layui-table" lay-skin="line">
+							  <thead style="background: #008ECD;color: #fff;">
+							    <tr style="background: #008ECD;">
+							      <th>姓名</th>
+							      <th>省份</th>
+							      <th>城市</th>
+							      <th>医院</th>
+							      <th>科室</th>
+							      <th>职位</th>
+							      <th>手机</th>
+							      <th style="text-align: center;">培训场次</th>
+							      <th>操作</th>
+							    </tr> 
+							  </thead>
+							  <tbody class="aa">
+							  	<!-- 循环块 -->
+							  	<tr>
+							  		<th>马光远</th>
+							  		<th>上海市</th>
+							  		<th>上海市</th>
+							  		<th>复旦大学附属中山医院</th>
+							  		<th>消化科</th>
+							  		<th>主任医师</th>
+							  		<th>18737052050</th>
+							  		<th style="text-align: center;">4</th>
+							  		<th>
+							  			<i class="layui-icon layui-icon-edit cursor compile-area" style="background: #00AE68;color: #fff;border-radius: 50%;padding: 1px;"></i>
+							  		</th>
+							  	</tr>
+							  </tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<!-- 弹框 -->
+	<div class="masking">
+		<i class="layui-icon layui-icon-close close-area cursor" style="color: #fff;position: absolute;top: 35px; right: 235px;border: 1px solid #fff;border-radius: 50%;padding: 10px;font-weight: bold;"></i>
+	</div>
+	<div class="mask-main">
+		<div class="mask-group">
+			<div class="mask-area">
+		        <div class="mask-area-left">姓名:</div>
+		        <div class="mask-area-right doctor-name">
+		            <input type="text" placeholder="请输入姓名">
+		        </div>
+		    </div>
+		    <div class="mask-area">
+		      <div class="mask-area-left">省份/城市:</div>
+		      <div class="mask-area-right" data-toggle="distpicker">
+		          <!-- <input type="text" placeholder="请输入姓名"> -->
+		          <div>
+		            <select id="select_pingtai" class="dispicker"></select>
+		            <select id="select_pingtai" class="dispicker-city"></select>
+		          </div>
+		      </div>
+		  </div>
+		  <div class="mask-area">
+		      <div class="mask-area-left">医院:</div>
+		      <div class="mask-area-right doc-hospital">
+		          <input type="text" placeholder="请输入所在医院">
+		      </div>
+		  </div>
+		  <div class="mask-area">
+		      <div class="mask-area-left">科室:</div>
+		      <div class="mask-area-right doc-hospital">
+		          <input type="text" placeholder="请输入所在科室">
+		      </div>
+		  </div>
+		  <div class="mask-area">
+		      <div class="mask-area-left">职位:</div>
+		      <div class="mask-area-right doc-hospital">
+		          <input type="text" placeholder="请输入所在职位">
+		      </div>
+		  </div>
+		  <div class="mask-area">
+		      <div class="mask-area-left">手机:</div>
+		      <div class="mask-area-right doc-hospital">
+		          <input type="number" placeholder="请输入您的手机号">
+		      </div>
+		  </div>
+		  <div class="mask-area">
+		      <div class="mask-area-left">培训场次:</div>
+		      <div class="mask-area-right doc-hospital">
+		          <input type="number" placeholder="请输入培训场次">
+		      </div>
+		  </div>
+		</div>
+		<div class="doctor-mask-btn affirm-btn-group">
+      <div class="affirm-btn cursor">确认</div>
+      <div class="cancel-btn cursor">取消</div>
+    </div>
+    <div class="doctor-mask-btn add-btn-group">
+      <div class="add-btn cursor">添加</div>
+      <div class="cancel-btn cursor">取消</div>
+    </div>
+	</div>
+
+<script type="text/javascript">
+	// $(".information-area:first").next().slideDown();
+	var winHeight = $(window).height();
+	var headHeight = $(".head-group").height();
+	// $(".content-main").css({"height": winHeight - headHeight +'px'});
+	$(".information-area:first").click(function(){
+		// $(this).parent().siblings().find(".information-area").removeClass("information-area-active");
+		$(this).addClass("information-area-active");
+		// $(this).parent().siblings().find(".infor-area-two").slideUp();
+		$(this).next().slideToggle();
+	});
+
+	$(".infor-area-two-son").click(function(){
+		$(this).parent().siblings().find(".infor-area-two-son").removeClass("son-active");
+		$(this).parent().siblings().find(".infor-area-son").slideUp();
+		$(this).addClass("son-active");
+		$(this).next().slideToggle();
+	});
+
+	$(".infor-area-son-area").click(function(){
+		$(this).siblings().find("span").removeClass("son-active");
+		$(this).find("span").addClass("son-active");
+	});
+	aa()
+	function aa(){
+		for(var i = 0;i<20;i++){
+			$(".aa").append(`<tr>
+							  		<th>马光远</th>
+							  		<th>上海市</th>
+							  		<th>上海市</th>
+							  		<th>复旦大学附属中山医院</th>
+							  		<th>消化科</th>
+							  		<th>主任医师</th>
+							  		<th>18737052050</th>
+							  		<th style="text-align: center;">4</th>
+							  		<th>
+							  			<i class="layui-icon layui-icon-edit cursor compile-area" style="background: #00AE68;color: #fff;border-radius: 50%;padding: 1px;"></i>
+							  		</th>
+							  	</tr>`)
+		}
+	};
+
+	var isAdd;//true为编辑  false  添加
+	$("body").on("click",".compile-area",function(){
+		isAdd = true;
+		if(isAdd){
+			$(".add-btn-group").hide();
+			$(".affirm-btn-group").show();
+			$(".masking").show();
+			$(".mask-main").addClass("mask-main-active");
+		}
+	});
+	// 取消
+	$(".cancel-btn").click(function(){
+		$(".masking").hide();
+		$(".mask-main").removeClass("mask-main-active");
+	});
+	// 右上角关闭事件
+	$(".close-area").click(function(){
+		$(".masking").hide();
+		$(".mask-main").removeClass("mask-main-active");
+	});
+
+	// 弹框确认事件
+	$(".affirm-btn").click(function(){
+		$(".masking").hide();
+		$(".mask-main").removeClass("mask-main-active");
+	});
+
+	// 添加讲师事件
+	$(".addTea").click(function(){
+		isAdd = false;
+		if(!isAdd){
+			$(".add-btn-group").show();
+			$(".affirm-btn-group").hide();
+			$(".masking").show();
+			$(".mask-main").addClass("mask-main-active");
+		}
+	})
+	
+</script>	
+</body>
+</html>

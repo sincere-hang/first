@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <meta content="email=no" name="format-detection">
+  <title>Document</title>
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/calendar/css/mobile_date.css">
+	<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.css">
+	<!-- <link rel="stylesheet" href="__PUBLIC__/mobile/date/c_2/css/lCalendar.css"> -->
+
+  <script src="__PUBLIC__/js/jquery.js"></script>
+  <script src="__PUBLIC__/js/layer/layer.js"></script>
+	<!-- <script src="__PUBLIC__/mobile/date/c_2/js/lCalendar.js"></script> -->
+	<script type="text/javascript" src="__PUBLIC__/calendar/js/mobile_date1.js"></script>
+
+<style type="text/css">
+	*{margin: 0;padding: 0;box-sizing: border-box;-webkit-overflow-scrolling: touch;}
+	.cursor:hover{cursor: pointer;}
+	.index{width: 100vw;height: 100vh;overflow: hidden;background: #f4f4f4;min-width: 1200px;display: flex;flex-direction: column;}
+	i{font-style: normal;}
+	*::-webkit-scrollbar {display:none}
+	.cursor{cursor: pointer;}
+	/*头部*/
+	.head-group{width: 100%;background: #16467b;padding: 15px 5%;display: flex;align-items: center;height: 115px;}
+	.left-area{width: 23%;}
+	.left-area img{width: 55%;display: block;margin: 0 auto;}
+	.right-area{width: 90%;padding-left: 15%;display: flex;align-items: center;justify-content: space-between;}
+	.home-group{width: 42px;height: 42px;}
+	.home-group:hover{cursor: pointer;}
+	.home-group img{width: 100%;}
+	.quit-group{display: flex;align-items: center;color: #fff;}
+	.quit-group img{width: 24px;height: 30px;}
+	.quit-group span{font-size: 24px;color: #fff;display: block;margin-left: 5px;}
+	.quit-group:hover{cursor: pointer;}
+
+/*内容区*/
+.content{width: 100%; background: #f4f4f4;display: flex;padding: 0px 5%;flex: 1;}
+.personal{width: 20%;overflow: hidden;height: 100%;background: #16467b;}
+.personal-main{width: 100%;height: 100%;}
+.information{width: 100%;}
+.information-group{width: 100%;}
+.information-area{width: 100%;color: #fff;font-size: 16px;display: flex;justify-content: center;align-items: center;line-height: 40px;}
+.information-area-active{background: #fff;color: #1C9AD2;padding: 3px 5px;border-left: 10px solid #008ECD;}
+.son-active{background: #fff;color: #1C9AD2;padding: 3px 5px;}
+
+.content-main{width: 80%;}
+.content-group{width: 100%;height: 100%;padding-left: 10px;overflow: hidden; overflow-y: scroll;padding-bottom: 20px;}
+.content-title{line-height: 46px;font-weight: bold;font-size: 16px;display: flex;justify-content: space-between;align-items: center;padding: 10px 0}
+
+/*日历*/
+.date ul{justify-content: space-between;}
+.date ul li{border-radius: 8px !important;width: 13.5%;margin-top: 10px;}
+.date ul li i{display: none;}
+.date ul li{text-align: left;padding: 3px 8px;}
+.date ul li span{line-height: normal;text-align: left;}
+
+.meetimg-box{width: 100%;display: flex;justify-content: space-between;flex-wrap: wrap;}
+.meetimg-group{width: 49%;background: #fff;border-radius: 8px;padding: 10px 20px;font-size: 17px;box-shadow: 0 0 5px #ddd;margin-top: 10px;}
+.meetimg-top{font-weight: bold;}
+.time-area{font-size: 18px;}
+.meetimg-bom{display: flex;justify-content: space-between;align-items: center;color: #999;margin-top: 15px;}
+.address-area{margin-bottom: 5px;}
+.meetimg-bom-right{}
+
+@media screen and (max-width: 1600px){
+	.head-group{height: 80px;}
+	.left-area img{width: 50%;}
+	.home-group{width: 30px;height: 30px;}
+	.quit-group span{font-size: 16px;}
+	.quit-group img{width: 20px;height: 26px;}
+}
+    </style>
+</head>
+<body>
+	<div class="index">
+		<!-- 头部 -->
+		<div class="head-group">
+		  <div class="left-area">
+		    <img src="__PUBLIC__/image/boston/logo.png" alt="">
+		  </div>
+		  <div class="right-area">
+		    <div class="home-group">
+		      <img src="__PUBLIC__/image/boston/home.png" alt="">
+		    </div>
+		    <div class="quit-group">
+		      <img src="__PUBLIC__/image/boston/quit.png" alt="">
+		        <span>退出</span>
+		    </div>
+		  </div>
+		</div>
+		<!-- 内容区 -->
+		<div class="content">
+			<div class="personal">
+				<div class="personal-main">
+					<div class="information">
+						<div class="information-group">
+							<!-- 一级 -->
+							<div class="information-area information-area-active cursor">
+								<span>会议管理</span>
+							</div>
+													
+						</div>
+						<div class="information-group">
+							<!-- 一级 -->
+							<div class="information-area cursor">
+								<span>医生列表</span>
+							</div>
+														
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="content-main" style="">
+				<div class="content-group">
+					<div class="content-title">
+						<span>会议管理</span>
+					</div>
+					<!-- 日历 -->
+					<div class="calender-group">
+						<div class="box">
+				      <section class="date">
+		          	<div class="head">
+		              <div class="prev">上一月</div>
+		              <div class="tomon"><span class="year"></span>年 <span class="month"></span>月</div>
+		              <div class="next">下一月</div>
+			          </div>
+			          <ol><li>周日</li><li>周一</li><li>周二</li><li>周三</li><li>周四</li><li>周五</li><li>周六</li></ol>
+			          <ul>
+		              <li>日期</li><li>日期</li><li>日期</li><li>日期</li><li>日期</li><li>日期</li><li>日期</li>
+		              <li>日期</li><li>日期</li><li>日期</li><li>日期</li>
+			          </ul>
+				      </section>
+				  	</div>
+					</div>
+					<!-- 会议列表 -->
+					<div class="meetimg-box">
+						<!-- 循环块 -->
+						<div class="meetimg-group">
+							<div class="meetimg-top">
+								<div class="time-area">13.30 科室会</div>
+								<div class="teacher-area">知道讲师： 马光远 教授</div>
+							</div>
+							<div class="meetimg-bom">
+								<div class="meetimg-bom-left">
+									<div class="address-area">会议地址： 杭州市中心医院</div>
+									<div class="student-area"><span>进修学员：</span><span style="color: #47AEDD;">程思远 李建国 刘凯文</span></div>
+								</div>
+								<div class="meetimg-bom-right cursor" style="background: #16467b;color: #fff;font-size: 17px;padding: 4px 10px;border-radius: 8px;"><span>进入会议</span></div>
+							</div>
+						</div>
+
+						<div class="meetimg-group">
+							<div class="meetimg-top">
+								<div class="time-area">13.30 科室会</div>
+								<div class="teacher-area">知道讲师： 马光远 教授</div>
+							</div>
+							<div class="meetimg-bom">
+								<div class="meetimg-bom-left">
+									<div class="address-area">会议地址： 杭州市中心医院</div>
+									<div class="student-area"><span>进修学员：</span><span style="color: #47AEDD;">程思远 李建国 刘凯文</span></div>
+								</div>
+								<div class="meetimg-bom-right cursor" style="font-weight: bold; color: #999;font-size: 17px;padding: 4px 10px;border-radius: 8px;"><span>会议未开始</span></div>
+							</div>
+						</div>
+
+						<div class="meetimg-group">
+							<div class="meetimg-top" style="color: #999;">
+								<div class="time-area">13.30 科室会</div>
+								<div class="teacher-area">知道讲师： 马光远 教授</div>
+							</div>
+							<div class="meetimg-bom">
+								<div class="meetimg-bom-left">
+									<div class="address-area">会议地址： 杭州市中心医院</div>
+									<div class="student-area"><span>进修学员：</span><span style="">程思远 李建国 刘凯文</span></div>
+								</div>
+								<div class="meetimg-bom-right cursor"><span>已结束会议</span></div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+
+<script type="text/javascript">
+	// $(".information-area:first").next().slideDown();
+	var winHeight = $(window).height();
+	var headHeight = $(".head-group").height();
+	// $(".content-main").css({"height": winHeight - headHeight +'px'});
+	$(".information-area:first").click(function(){
+		// $(this).parent().siblings().find(".information-area").removeClass("information-area-active");
+		$(this).addClass("information-area-active");
+		// $(this).parent().siblings().find(".infor-area-two").slideUp();
+		$(this).next().slideToggle();
+	});
+
+	$(".infor-area-two-son").click(function(){
+		$(this).parent().siblings().find(".infor-area-two-son").removeClass("son-active");
+		$(this).parent().siblings().find(".infor-area-son").slideUp();
+		$(this).addClass("son-active");
+		$(this).next().slideToggle();
+	});
+
+	$(".infor-area-son-area").click(function(){
+		$(this).siblings().find("span").removeClass("son-active");
+		$(this).find("span").addClass("son-active");
+	});
+
+	
+	var date = new Date();
+	var year = date.getFullYear();
+	var month = date.getMonth() + 1;
+	var second = date.getSeconds();
+	var data = date.getDate();
+
+	var dataJson = `["6",${data},"8","10"]`;
+	var dateArr = JSON.parse(dataJson);
+	//回填数据
+  $('.year').text(year);
+  $('.month').text(month);
+	console.log(dataJson);
+	datt(year,month,dateArr);
+	// datt(year,month,'',dateJson);
+
+	
+</script>	
+</body>
+</html>
