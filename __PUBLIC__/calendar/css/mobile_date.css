@@ -1,0 +1,22 @@
+*{margin: 0;padding: 0;font-style: normal;}
+.clear{clear: both;}
+html,body{font-size: 62.5%;font-family: "Microsoft YaHei", "SimSun", Helvetica, Arial, sans-serif;}
+.box{width: 100%;height: 100%; margin: 0 auto;padding: 10px;}
+.head{width: 100%;height:4.5rem;cursor: pointer;}
+.head .prev,.head .next{width: 20%;text-align: center;float: left;line-height: 4.5rem;font-size:1.6rem;}
+.head .tomon{width: 60%;float: left;text-align: center;line-height: 4.5rem;font-size: 1.6rem;}
+.date ol{width: 100%;height: 4rem;background: #16467b;padding: 0;}
+.date ol li{display:block;float: left;width: 14.2857%;text-align: center;font-size: 1.6rem;color: #fff;border: none;padding: 0;line-height: 4rem;height: 4rem;}
+.date ul{width: 100%;display: flex;flex-direction: row;flex-wrap: wrap;}
+.date ul li{display: block;width: 14.2857%;height: 4.5rem;text-align: center;font-size: 1.6rem;background: #fff;position: relative;float: left;display: flex;justify-content: space-between;}
+.date ul li i{font-size: 10px;position: absolute;right: 0;bottom:0.3rem;display:block;height: 15px;line-height: 15px;width: 100%;text-align: center;color: #FF4702
+;}
+.date ul li span{display: block;width: 40%;height: 100%;line-height: 4.5rem;text-align: center;}
+.date ul .no_date{background: #fafafa;color: #999;line-height:4.5rem;}
+.date ul .act_wk{color: #FF4702;}
+.date ul .act_date{background: #FF4702;color: #fff;}
+.date ul .act_date_{background: #EA2000;color: #fff;}
+.date ul .act_ds{background: #005bac;color: #fff;}
+.date ul .content_date{background: #16467b;color: #fff; border-radius: 2.25rem;}
+.date ul .pass_content_date{background: #d2d2d2;color: #fff; border-radius: 2.25rem;}
+.date ul .no_content_date{background: #F1F1F1;color: #fff;}

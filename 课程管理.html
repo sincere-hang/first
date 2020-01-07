@@ -12,9 +12,9 @@
 	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
   <script src="__PUBLIC__/js/jquery.js"></script>
   <script src="__PUBLIC__/js/layer/layer.js"></script>
-  <script src="__PUBLIC__/echarts/dist/echarts.min.js"></script>
   <script src="__PUBLIC__/address/three/js/distpicker.data.js"></script>
   <script src="__PUBLIC__/address/three/js/distpicker.js"></script>
+  <script src="__PUBLIC__/layDate/laydate/laydate.js"></script>
 
 <style type="text/css">
 	*{margin: 0;padding: 0;box-sizing: border-box;-webkit-overflow-scrolling: touch;}
@@ -46,7 +46,7 @@
 .information-area-active{background: #fff;color: #1C9AD2;padding: 3px 5px;border-left: 10px solid #008ECD;}
 .son-active{background: #fff;color: #1C9AD2;padding: 3px 5px;}
 
-.infor-area-two{width: 100%;text-align: center;color: #fff;font-size: 14px;display: none;}
+.infor-area-two{width: 100%;text-align: center;color: #fff;font-size: 16px;display: none;}
 .infor-area-two-son{line-height: 40px;}
 .infor-area-son-area{line-height: 35px;}
 .infor-area-son-area span{margin-left: 30px;}
@@ -54,7 +54,7 @@
 
 .content-main{width: 80%;}
 .content-group{width: 100%;height: 100%;padding-left: 10px;overflow: hidden; overflow-y: scroll;padding-bottom: 20px;}
-.content-title{height: 46px;line-height: 46px;font-weight: bold;font-size: 16px;display: flex;justify-content: space-between;align-items: center;}
+.content-title{line-height: 46px;font-weight: bold;font-size: 16px;display: flex;justify-content: space-between;align-items: center;padding: 10px 0}
 
 .table-main{width: 100%;border: 1px solid #ddd;background: #fff;padding: 15px;}
 .search-group{width: 100%;}
@@ -71,11 +71,29 @@
 .mask-area{display: flex;align-items: center;margin-top: 15px;}
 .mask-area-left{font-size: 18px;margin-right: 15px;width: 120px;}
 .mask-area-right{width: 100%;}
-#select_pingtai{width: 200px;height: 35px;border-radius: 8px;border: 1px solid #ddd;background: none;}
+#select_pingtai,#select_xueyuan{width: 200px;height: 35px;border-radius: 8px;border: 1px solid #ddd;background: none;}
+#select_xueyuan{margin-bottom: 15px;}
 .mask-area-right input{width: 200px;height: 35px;padding: 3px 5px;border: 1px solid #ddd;border-radius: 8px;outline: none;}
 .doctor-mask-btn{width: 30%;display: flex;justify-content: space-between;align-items: center;margin: 0 auto;margin-top: 20px;}
 .affirm-btn,.cancel-btn,.add-btn{color: #fff;font-size: 16px;background: #308ECC;margin-left: 15px;width: 95px;text-align: center;line-height: 35px;border-radius: 8px;}
 .cancel-btn{background: #fff;color: #000;border: 1px solid #ddd;}
+.mask-area-right-main{display: flex;flex-direction: column;}
+.addStudent span:first-child{background: #008ECD;color: #fff;font-size: 15px;padding: 3px 10px;}
+.addStudent span:nth-child(2){border: 1px solid #ddd;font-size: 15px;padding: 3px 10px;}
+
+/*课程管理*/
+.courseware-group{width: 100%;}
+.courseware-top{display: flex;align-items: center;font-size: 16px;}
+.courseware-tit{margin-right: 15px;}
+.courseware-addBtn span{background: #00AE68;color: #fff;padding: 5px 40px;}
+.courseware-group{width: 100%;margin-top: 15px;border-top: 1px solid #ddd;padding: 15px 0;}
+.courseware-group:first-child{border-top: none;}
+.courseware-area{display: flex;align-items: center;font-size: 15px;margin-top: 10px;}
+.courseware-area-right{display: flex;align-items: center;margin-left: 20px;}
+.compile-class{color: #fff;background: #00AE68;margin-right: 10px;padding: 5px 20px;}
+.compile-delete{color: #fff;background: #E84646;margin-right: 10px;padding: 5px 20px;}
+
+
 @media screen and (max-width: 1600px){
 	.head-group{height: 80px;}
 	.left-area img{width: 50%;}
@@ -116,9 +134,9 @@
 								<div class="infor-area-two-list">
 									<span class="cursor infor-area-two-son son-active">培训中心1</span>
 									<div class="infor-area-son" style="display: block;">
-										<div class="infor-area-son-area cursor"><span class="son-active">讲师管理</span> </div>
+										<div class="infor-area-son-area cursor"><span>讲师管理</span> </div>
 										<div class="infor-area-son-area cursor"><span>学员管理</span></div>
-										<div class="infor-area-son-area cursor"><span>课程管理</span></div>
+										<div class="infor-area-son-area cursor"><span class="son-active">课程管理</span></div>
 										<div class="infor-area-son-area cursor"><span>会议管理</span></div>
 									</div>
 								</div>
@@ -223,7 +241,7 @@
 				<div class="content-group">
 					<div class="content-title">
 						<span>华东地区 • 课程管理</span>
-						<span class="cursor addTea" style="font-weight: normal;font-size: 14px;color: #fff;background: #00AE68;width: 80px;height: 30px;display: block;text-align: center;line-height: 30px;">＋创建课程</span>
+						<span class="cursor addTea" style="font-weight: normal;font-size: 17px;color: #fff;background: #00AE68;display: block;padding: 5px 15px">＋创建课程</span>
 					</div>
 					<div class="table-main">
 						<div class="search-group">
@@ -246,7 +264,7 @@
 							      <th style="text-align: center;">课件管理</th>
 							    </tr> 
 							  </thead>
-							  <tbody class="aa">
+							  <tbody class="cc">
 							  	<!-- 循环块 -->
 							  	<tr>
 							  		<th>2019.11.20</th>
@@ -262,14 +280,14 @@
 							  			<div>马光远</div>
 							  			<div>马光远</div>
 							  		</th>
-							  		<th style="text-align: center;">
+							  		<th style="text-align: center;" class="aa">
 							  			<i class="layui-icon radio-area radio-groupOne cursor"></i>
 							  		</th>
-							  		<th style="text-align: center;">
-							  			<i class="layui-icon radio-area radio-groupTwo cursor"></i>
+							  		<th style="text-align: center;" class="bb">
+							  			<span class="layui-icon radio-area radio-groupTwo cursor"></span>
 							  		</th>
 							  		<th style="text-align: center;">
-							  			<i class="layui-icon layui-icon-edit cursor" style="background: #00AE68;color: #fff;border-radius: 50%;padding: 1px;"></i>
+							  			<i class="layui-icon layui-icon-edit cursor compile-area" style="background: #00AE68;color: #fff;border-radius: 50%;padding: 1px;"></i>
 							  		</th>
 							  	</tr>
 							  </tbody>
@@ -288,67 +306,133 @@
 	<div class="masking">
 		<i class="layui-icon layui-icon-close close-area cursor" style="color: #fff;position: absolute;top: 35px; right: 235px;border: 1px solid #fff;border-radius: 50%;padding: 10px;font-weight: bold;"></i>
 	</div>
-	<div class="mask-main">
+	<!-- 课件管理 -->
+	<div class="mask-main courseware">
+		
 		<div class="mask-group">
-			<div class="mask-area">
-		        <div class="mask-area-left">姓名:</div>
-		        <div class="mask-area-right doctor-name">
-		            <input type="text" placeholder="请输入姓名">
-		        </div>
-		    </div>
-		    <div class="mask-area">
-		      <div class="mask-area-left">省份/城市:</div>
-		      <div class="mask-area-right" data-toggle="distpicker">
-		          <!-- <input type="text" placeholder="请输入姓名"> -->
-		          <div>
-		            <select id="select_pingtai" class="dispicker"></select>
-		            <select id="select_pingtai" class="dispicker-city"></select>
-		          </div>
-		      </div>
-		  </div>
-		  <div class="mask-area">
-		      <div class="mask-area-left">医院:</div>
-		      <div class="mask-area-right doc-hospital">
-		          <input type="text" placeholder="请输入所在医院">
-		      </div>
-		  </div>
-		  <div class="mask-area">
-		      <div class="mask-area-left">科室:</div>
-		      <div class="mask-area-right doc-hospital">
-		          <input type="text" placeholder="请输入所在科室">
-		      </div>
-		  </div>
-		  <div class="mask-area">
-		      <div class="mask-area-left">职位:</div>
-		      <div class="mask-area-right doc-hospital">
-		          <input type="text" placeholder="请输入所在职位">
-		      </div>
-		  </div>
-		  <div class="mask-area">
-		      <div class="mask-area-left">手机:</div>
-		      <div class="mask-area-right doc-hospital">
-		          <input type="number" placeholder="请输入您的手机号">
-		      </div>
-		  </div>
-		  <div class="mask-area">
-		      <div class="mask-area-left">负责代表:</div>
-		      <div class="mask-area-right doc-hospital">
-		          <input type="text" placeholder="请输入负责代表">
-		      </div>
-		  </div>
-		  <div class="mask-area">
-		      <div class="mask-area-left">培训场次:</div>
-		      <div class="mask-area-right doc-hospital">
-		          <input type="number" placeholder="请输入培训场次">
-		      </div>
-		  </div>
+
+			<div class="courseware-group">
+				<div class="courseware-top">
+					<div class="courseware-tit"><span>课前预习资料</span></div>
+					<div class="courseware-addBtn cursor"><span>+添加</span></div>
+					
+				</div>
+				<div class="courseware-area">
+					<div class="courseware-area-left">1：学习交流初级课程课前预习内容（一）</div>
+					<div class="courseware-area-right">
+						<!-- <div class="compile-class cursor">编辑</div> -->
+						<div class="compile-delete cursor">删除</div>
+					</div>
+				</div>
+			</div>
+			<div class="courseware-group">
+				<div class="courseware-top">
+					<div class="courseware-tit"><span>课前预习资料</span></div>
+					<div class="courseware-addBtn cursor"><span>+添加</span></div>
+					
+				</div>
+				<div class="courseware-area">
+					<div class="courseware-area-left">1：学习交流初级课程课前预习内容（一）</div>
+					<div class="courseware-area-right">
+						<!-- <div class="compile-class cursor">编辑</div> -->
+						<div class="compile-delete cursor">删除</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="doctor-mask-btn affirm-btn-group">
       <div class="affirm-btn cursor">确认</div>
       <div class="cancel-btn cursor">取消</div>
     </div>
     <div class="doctor-mask-btn add-btn-group">
-      <div class="add-btn cursor">添加</div>
+      <div class="add-btn cursor">创建</div>
+      <div class="cancel-btn cursor">取消</div>
+    </div>
+	</div>
+	<!-- 创建课程 -->
+	<div class="mask-main mask-create">
+		<div class="mask-group">
+			<div class="mask-area">
+				<div class="mask-area-left">课程时间:</div>
+	        <div class="mask-area-right doctor-name">
+	            <input type="text" placeholder="请选择课程时间" id="test1">
+
+	        </div>
+			</div>
+			<div class="mask-area">
+				<div class="mask-area-left">课程类型:</div>
+	        <div class="mask-area-right doctor-name">
+	            <input type="text" placeholder="初级课程">
+
+	        </div>
+			</div>
+			<div class="mask-area">
+				<div class="mask-area-left">指导讲师:</div>
+	        <div class="mask-area-right doctor-name">
+	            <select name="" id="select_pingtai">
+	            	<option value="">马光远</option>
+	            	<option value="">马光远</option>
+	            	<option value="">马光远</option>
+	            	<option value="">马光远</option>
+	            </select>
+
+	        </div>
+			</div>
+			<div class="mask-area" style="align-items: flex-start;">
+				<div class="mask-area-left">进修学员:</div>
+	        <div class="mask-area-right doctor-name">
+						<div class="mask-area-right-main">
+							<div class="mask-area-right-main-area">
+								<select name="" id="select_xueyuan">
+		            	<option value="">马光远</option>
+		            	<option value="">马光远</option>
+		            	<option value="">马光远</option>
+		            	<option value="">马光远</option>
+		            </select>
+		            <span class="cursor student-area" style="color: red; display: none;">删除</span>
+							</div>
+							
+
+	            <div class="mask-area-right-main-area">
+								<select name="" id="select_xueyuan">
+		            	<option value="">马光远</option>
+		            	<option value="">马光远</option>
+		            	<option value="">马光远</option>
+		            	<option value="">马光远</option>
+		            </select>
+		            <span class="cursor student-area" style="color: red; display: none;">删除</span>
+							</div>
+
+	            <div class="mask-area-right-main-area">
+								<select name="" id="select_xueyuan">
+		            	<option value="">马光远</option>
+		            	<option value="">马光远</option>
+		            	<option value="">马光远</option>
+		            	<option value="">马光远</option>
+		            </select>
+		            <span class="cursor student-area" style="color: red; display: none;">删除</span>
+							</div>
+	            <div class="mask-area-right-main-area">
+								<select name="" id="select_xueyuan">
+		            	<option value="">马光远</option>
+		            	<option value="">马光远</option>
+		            	<option value="">马光远</option>
+		            	<option value="">马光远</option>
+		            </select>
+		            <span class="cursor student-area" style="color: red; display: none;">删除</span>
+							</div>
+						</div>
+
+						<!-- 添加学员 -->
+						<div class="addStudent">
+							<span class="cursor">+添加学员</span>
+							<span class="deleteStudent cursor">删除学员</span>
+						</div>
+	        </div>
+			</div>
+		</div>
+		<div class="doctor-mask-btn add-btn-group">
+      <div class="add-btn cursor">创建</div>
       <div class="cancel-btn cursor">取消</div>
     </div>
 	</div>
@@ -376,35 +460,46 @@
 		$(this).siblings().find("span").removeClass("son-active");
 		$(this).find("span").addClass("son-active");
 	});
-	// aa()
+
+
+	aa()
 	function aa(){
 		for(var i = 0;i<20;i++){
-			$(".aa").append(`<tr>
+			$(".cc").append(`<tr>
+							  		<th>2019.11.20</th>
 							  		<th>马光远</th>
-							  		<th>上海市</th>
-							  		<th>上海市</th>
-							  		<th>复旦大学附属中山医院</th>
-							  		<th>消化科</th>
-							  		<th>主任医师</th>
-							  		<th>18737052050</th>
 							  		<th>赵子龙</th>
-							  		<th style="text-align: center;">4</th>
-							  		<th>
+							  		<th style="">
+							  			<div>马光远</div>
+							  			<div>马光远</div>
+							  			<div>马光远</div>
+							  		</th>
+							  		<th style="">
+							  			<div>马光远</div>
+							  			<div>马光远</div>
+							  			<div>马光远</div>
+							  		</th>
+							  		<th style="text-align: center;" class="aa">
+							  			<i class="layui-icon radio-area radio-groupOne cursor"></i>
+							  		</th>
+							  		<th style="text-align: center;" class="bb">
+							  			<span class="layui-icon radio-area radio-groupTwo cursor"></span>
+							  		</th>
+							  		<th style="text-align: center;">
 							  			<i class="layui-icon layui-icon-edit cursor compile-area" style="background: #00AE68;color: #fff;border-radius: 50%;padding: 1px;"></i>
 							  		</th>
 							  	</tr>`)
 		}
 	};
 
-	var isAdd;//true为编辑  false  添加
+
+	// 课件管理
 	$("body").on("click",".compile-area",function(){
-		isAdd = true;
-		if(isAdd){
-			$(".add-btn-group").hide();
-			$(".affirm-btn-group").show();
-			$(".masking").show();
-			$(".mask-main").addClass("mask-main-active");
-		}
+		$(".add-btn-group").hide();
+		$(".affirm-btn-group").show();
+		$(".masking").show();
+		$(".courseware").addClass("mask-main-active");
+		
 	});
 	// 取消
 	$(".cancel-btn").click(function(){
@@ -423,31 +518,75 @@
 		$(".mask-main").removeClass("mask-main-active");
 	});
 
-	// 添加讲师事件
+	$(".add-btn").click(function(){
+		$(".masking").hide();
+		$(".mask-main").removeClass("mask-main-active");
+	})
+
+	// 创建课程事件
 	$(".addTea").click(function(){
-		isAdd = false;
-		if(!isAdd){
-			$(".add-btn-group").show();
-			$(".affirm-btn-group").hide();
-			$(".masking").show();
-			$(".mask-main").addClass("mask-main-active");
-		}
+		$(".add-btn-group").show();
+		$(".affirm-btn-group").hide();
+		$(".masking").show();
+		$(".mask-create").addClass("mask-main-active");
+			
 	});
+	laydate.render({
+	  elem: '#test1'
+	});
+
+	// 删除学员
+	$(".deleteStudent").click(function(){
+		$(".student-area").show();
+	});
+
+	// 每项删除按钮事件
+	$(".student-area").click(function(){
+		var obj = $(this);
+		layer.confirm('确定删除吗？',{
+			btn: ['删除','取消']
+		},function(){
+			obj.parent().remove();
+			layer.closeAll();
+		})
+	})
+
 
 
 	// 初级高级二选一
 	$(".radio-groupOne").click(function(){
-		$(this).parent().next().find(".radio-group").removeClass("layui-icon-ok radio-area-active");
-		$(this).parent().next().find(".radio-group").addClass("radio-area");
+		$(this).parents(".aa").next().find(".radio-groupTwo").removeClass("layui-icon-ok radio-area-active");
+		$(this).parents(".aa").next().find(".radio-groupTwo").addClass("radio-area");
 		$(this).addClass("layui-icon-ok radio-area-active");
 		$(this).removeClass("radio-area");
 	});
 	$(".radio-groupTwo").click(function(){
-		console.log($(this).parent());
-		$(this).parent().prev().find(".radio-group").removeClass("layui-icon-ok radio-area-active");
-		$(this).parent().prev().find(".radio-group").addClass("radio-area");
+		console.log($(this));
+		console.log($(this).parents(".bb").prev());
+		$(this).parents(".bb").prev().find(".radio-groupOne").removeClass("layui-icon-ok radio-area-active");
+		$(this).parents(".bb").prev().find(".radio-groupOne").addClass("radio-area");
 		$(this).addClass("layui-icon-ok radio-area-active");
 		$(this).removeClass("radio-area");
+	});
+
+	$(".courseware-addBtn").click(function(){
+		$(this).parent().parent().append(`<div class="courseware-area">
+					<div class="courseware-area-left">1：学习交流初级课程课前预习内容（一）</div>
+					<div class="courseware-area-right">
+						<!-- <div class="compile-class cursor">编辑</div> -->
+						<div class="compile-delete cursor">删除</div>
+					</div>
+				</div>`)
+	});
+
+	$("body").on("click",".compile-delete",function(){
+		var obj = $(this);
+		layer.confirm('确定删除吗？',{
+			btn: ['删除','取消']
+		},function(){
+			obj.parent().parent().remove();
+			layer.closeAll();
+		})
 	})
 	
 </script>	

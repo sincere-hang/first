@@ -10,10 +10,14 @@
   <meta content="email=no" name="format-detection">
   <title>Document</title>
 	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/calendar/css/mobile_date.css">
+	<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.css">
+	<!-- <link rel="stylesheet" href="__PUBLIC__/mobile/date/c_2/css/lCalendar.css"> -->
+
   <script src="__PUBLIC__/js/jquery.js"></script>
   <script src="__PUBLIC__/js/layer/layer.js"></script>
-  <script src="__PUBLIC__/address/three/js/distpicker.data.js"></script>
-  <script src="__PUBLIC__/address/three/js/distpicker.js"></script>
+	<!-- <script src="__PUBLIC__/mobile/date/c_2/js/lCalendar.js"></script> -->
+	<script type="text/javascript" src="__PUBLIC__/calendar/js/mobile_date1.js"></script>
 
 <style type="text/css">
 	*{margin: 0;padding: 0;box-sizing: border-box;-webkit-overflow-scrolling: touch;}
@@ -53,25 +57,23 @@
 
 .content-main{width: 80%;}
 .content-group{width: 100%;height: 100%;padding-left: 10px;overflow: hidden; overflow-y: scroll;padding-bottom: 20px;}
-.content-title{height: 46px;line-height: 46px;font-weight: bold;font-size: 16px;display: flex;justify-content: space-between;align-items: center;}
+.content-title{line-height: 46px;font-weight: bold;font-size: 16px;display: flex;justify-content: space-between;align-items: center;padding: 10px 0}
 
-.table-main{width: 100%;border: 1px solid #ddd;background: #fff;padding: 15px;}
-.search-group{width: 100%;}
-.search-area{width: 30%;display: flex;justify-content: space-between;align-items: center;border: 1px solid #ddd;border-radius: 5px;overflow: hidden;padding-left: 3px;}
-.search-inp{border: none;}
+/*日历*/
+.date ul{justify-content: space-between;}
+.date ul li{border-radius: 8px !important;width: 13.5%;margin-top: 10px;}
+.date ul li i{display: none;}
+.date ul li{text-align: left;padding: 3px 8px;}
+.date ul li span{line-height: normal;text-align: left;}
 
-/*弹框*/
-.masking{width: 100vw;height: 100vh;background: rgba(0,0,0,0.8);position: absolute;top: 0;left: 0;z-index: 9;display: none;}
-.mask-main{width: 50%;background: #fff;border-radius: 8px;height: 500px;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%) scale(0.6);z-index: -1;padding: 15px;transition: 0.3s;opacity: 0}
-.mask-main-active{transform: translate(-50%,-50%) scale(1);z-index: 99;opacity: 1;}
-.mask-area{display: flex;align-items: center;margin-top: 15px;}
-.mask-area-left{font-size: 18px;margin-right: 15px;width: 120px;}
-.mask-area-right{width: 100%;}
-#select_pingtai{width: 200px;height: 35px;border-radius: 8px;border: 1px solid #ddd;background: none;}
-.mask-area-right input{width: 200px;height: 35px;padding: 3px 5px;border: 1px solid #ddd;border-radius: 8px;outline: none;}
-.doctor-mask-btn{width: 30%;display: flex;justify-content: space-between;align-items: center;margin: 0 auto;margin-top: 20px;}
-.affirm-btn,.cancel-btn,.add-btn{color: #fff;font-size: 16px;background: #308ECC;margin-left: 15px;width: 95px;text-align: center;line-height: 35px;border-radius: 8px;}
-.cancel-btn{background: #fff;color: #000;border: 1px solid #ddd;}
+.meetimg-box{width: 100%;display: flex;justify-content: space-between;flex-wrap: wrap;}
+.meetimg-group{width: 49%;background: #fff;border-radius: 8px;padding: 10px 20px;font-size: 17px;box-shadow: 0 0 5px #ddd;margin-top: 10px;}
+.meetimg-top{font-weight: bold;}
+.time-area{font-size: 18px;}
+.meetimg-bom{display: flex;justify-content: space-between;align-items: center;color: #999;margin-top: 15px;}
+.address-area{margin-bottom: 5px;}
+.meetimg-bom-right{}
+
 @media screen and (max-width: 1600px){
 	.head-group{height: 80px;}
 	.left-area img{width: 50%;}
@@ -112,10 +114,10 @@
 								<div class="infor-area-two-list">
 									<span class="cursor infor-area-two-son son-active">培训中心1</span>
 									<div class="infor-area-son" style="display: block;">
-										<div class="infor-area-son-area cursor"><span class="son-active">讲师管理</span> </div>
+										<div class="infor-area-son-area cursor"><span>讲师管理</span> </div>
 										<div class="infor-area-son-area cursor"><span>学员管理</span></div>
 										<div class="infor-area-son-area cursor"><span>课程管理</span></div>
-										<div class="infor-area-son-area cursor"><span>会议管理</span></div>
+										<div class="infor-area-son-area cursor"><span class="son-active">会议管理</span></div>
 									</div>
 								</div>
 								<div class="infor-area-two-list">
@@ -218,53 +220,71 @@
 			<div class="content-main" style="">
 				<div class="content-group">
 					<div class="content-title">
-						<span>华东地区 • 讲师管理</span>
-						<span class="cursor addTea" style="font-weight: normal;font-size: 14px;color: #fff;background: #00AE68;width: 80px;height: 30px;display: block;text-align: center;line-height: 30px;">＋添加讲师</span>
+						<span>会议管理</span>
 					</div>
-					<div class="table-main">
-						<div class="search-group">
-							<div class="search-area">
-								<i class="layui-icon layui-icon-search cursor"></i>
-								<input type="text" class="layui-input search-inp">
+					<!-- 日历 -->
+					<div class="calender-group">
+						<div class="box">
+				      <section class="date">
+		          	<div class="head">
+		              <div class="prev">上一月</div>
+		              <div class="tomon"><span class="year"></span>年 <span class="month"></span>月</div>
+		              <div class="next">下一月</div>
+			          </div>
+			          <ol><li>周日</li><li>周一</li><li>周二</li><li>周三</li><li>周四</li><li>周五</li><li>周六</li></ol>
+			          <ul>
+		              <li>日期</li><li>日期</li><li>日期</li><li>日期</li><li>日期</li><li>日期</li><li>日期</li>
+		              <li>日期</li><li>日期</li><li>日期</li><li>日期</li>
+			          </ul>
+				      </section>
+				  	</div>
+					</div>
+					<!-- 会议列表 -->
+					<div class="meetimg-box">
+						<!-- 循环块 -->
+						<div class="meetimg-group">
+							<div class="meetimg-top">
+								<div class="time-area">13.30 科室会</div>
+								<div class="teacher-area">知道讲师： 马光远 教授</div>
+							</div>
+							<div class="meetimg-bom">
+								<div class="meetimg-bom-left">
+									<div class="address-area">会议地址： 杭州市中心医院</div>
+									<div class="student-area"><span>进修学员：</span><span style="color: #47AEDD;">程思远 李建国 刘凯文</span></div>
+								</div>
+								<div class="meetimg-bom-right cursor" style="background: #16467b;color: #fff;font-size: 17px;padding: 4px 10px;border-radius: 8px;"><span>进入会议</span></div>
 							</div>
 						</div>
-						<div class="table-group">
-							<table class="layui-table" lay-skin="line">
-							  <thead style="background: #008ECD;color: #fff;">
-							    <tr style="background: #008ECD;">
-							      <th>姓名</th>
-							      <th>省份</th>
-							      <th>城市</th>
-							      <th>医院</th>
-							      <th>科室</th>
-							      <th>职位</th>
-							      <th>手机</th>
-							      <th>负责代表</th>
-							      <th>培训场次</th>
-							      <th>操作</th>
-							    </tr> 
-							  </thead>
-							  <tbody class="aa">
-							  	<!-- 循环块 -->
-							  	<tr>
-							  		<th>马光远</th>
-							  		<th>上海市</th>
-							  		<th>上海市</th>
-							  		<th>复旦大学附属中山医院</th>
-							  		<th>消化科</th>
-							  		<th>主任医师</th>
-							  		<th>18737052050</th>
-							  		<th>赵子龙</th>
-							  		<th style="text-align: center;">4</th>
-							  		<th>
-							  			<i class="layui-icon layui-icon-edit cursor" style="background: #00AE68;color: #fff;border-radius: 50%;padding: 1px;"></i>
-							  		</th>
-							  	</tr>
-							  </tbody>
-							</table>
+
+						<div class="meetimg-group">
+							<div class="meetimg-top">
+								<div class="time-area">13.30 科室会</div>
+								<div class="teacher-area">知道讲师： 马光远 教授</div>
+							</div>
+							<div class="meetimg-bom">
+								<div class="meetimg-bom-left">
+									<div class="address-area">会议地址： 杭州市中心医院</div>
+									<div class="student-area"><span>进修学员：</span><span style="color: #47AEDD;">程思远 李建国 刘凯文</span></div>
+								</div>
+								<div class="meetimg-bom-right cursor" style="font-weight: bold; color: #999;font-size: 17px;padding: 4px 10px;border-radius: 8px;"><span>会议未开始</span></div>
+							</div>
+						</div>
+
+						<div class="meetimg-group">
+							<div class="meetimg-top" style="color: #999;">
+								<div class="time-area">13.30 科室会</div>
+								<div class="teacher-area">知道讲师： 马光远 教授</div>
+							</div>
+							<div class="meetimg-bom">
+								<div class="meetimg-bom-left">
+									<div class="address-area">会议地址： 杭州市中心医院</div>
+									<div class="student-area"><span>进修学员：</span><span style="">程思远 李建国 刘凯文</span></div>
+								</div>
+								<div class="meetimg-bom-right cursor"><span>已结束会议</span></div>
+							</div>
 						</div>
 					</div>
-
+					
 				</div>
 
 
@@ -272,74 +292,6 @@
 		</div>
 	</div>
 
-	<!-- 弹框 -->
-	<div class="masking">
-		<i class="layui-icon layui-icon-close close-area cursor" style="color: #fff;position: absolute;top: 35px; right: 235px;border: 1px solid #fff;border-radius: 50%;padding: 10px;font-weight: bold;"></i>
-	</div>
-	<div class="mask-main">
-		<div class="mask-group">
-			<div class="mask-area">
-		        <div class="mask-area-left">姓名:</div>
-		        <div class="mask-area-right doctor-name">
-		            <input type="text" placeholder="请输入姓名">
-		        </div>
-		    </div>
-		    <div class="mask-area">
-		      <div class="mask-area-left">省份/城市:</div>
-		      <div class="mask-area-right" data-toggle="distpicker">
-		          <!-- <input type="text" placeholder="请输入姓名"> -->
-		          <div>
-		            <select id="select_pingtai" class="dispicker"></select>
-		            <select id="select_pingtai" class="dispicker-city"></select>
-		          </div>
-		      </div>
-		  </div>
-		  <div class="mask-area">
-		      <div class="mask-area-left">医院:</div>
-		      <div class="mask-area-right doc-hospital">
-		          <input type="text" placeholder="请输入所在医院">
-		      </div>
-		  </div>
-		  <div class="mask-area">
-		      <div class="mask-area-left">科室:</div>
-		      <div class="mask-area-right doc-hospital">
-		          <input type="text" placeholder="请输入所在科室">
-		      </div>
-		  </div>
-		  <div class="mask-area">
-		      <div class="mask-area-left">职位:</div>
-		      <div class="mask-area-right doc-hospital">
-		          <input type="text" placeholder="请输入所在职位">
-		      </div>
-		  </div>
-		  <div class="mask-area">
-		      <div class="mask-area-left">手机:</div>
-		      <div class="mask-area-right doc-hospital">
-		          <input type="number" placeholder="请输入您的手机号">
-		      </div>
-		  </div>
-		  <div class="mask-area">
-		      <div class="mask-area-left">负责代表:</div>
-		      <div class="mask-area-right doc-hospital">
-		          <input type="text" placeholder="请输入负责代表">
-		      </div>
-		  </div>
-		  <div class="mask-area">
-		      <div class="mask-area-left">培训场次:</div>
-		      <div class="mask-area-right doc-hospital">
-		          <input type="number" placeholder="请输入培训场次">
-		      </div>
-		  </div>
-		</div>
-		<div class="doctor-mask-btn affirm-btn-group">
-      <div class="affirm-btn cursor">确认</div>
-      <div class="cancel-btn cursor">取消</div>
-    </div>
-    <div class="doctor-mask-btn add-btn-group">
-      <div class="add-btn cursor">添加</div>
-      <div class="cancel-btn cursor">取消</div>
-    </div>
-	</div>
 
 <script type="text/javascript">
 	// $(".information-area:first").next().slideDown();
@@ -364,63 +316,23 @@
 		$(this).siblings().find("span").removeClass("son-active");
 		$(this).find("span").addClass("son-active");
 	});
-	aa()
-	function aa(){
-		for(var i = 0;i<20;i++){
-			$(".aa").append(`<tr>
-							  		<th>马光远</th>
-							  		<th>上海市</th>
-							  		<th>上海市</th>
-							  		<th>复旦大学附属中山医院</th>
-							  		<th>消化科</th>
-							  		<th>主任医师</th>
-							  		<th>18737052050</th>
-							  		<th>赵子龙</th>
-							  		<th style="text-align: center;">4</th>
-							  		<th>
-							  			<i class="layui-icon layui-icon-edit cursor compile-area" style="background: #00AE68;color: #fff;border-radius: 50%;padding: 1px;"></i>
-							  		</th>
-							  	</tr>`)
-		}
-	};
 
-	var isAdd;//true为编辑  false  添加
-	$("body").on("click",".compile-area",function(){
-		isAdd = true;
-		if(isAdd){
-			$(".add-btn-group").hide();
-			$(".affirm-btn-group").show();
-			$(".masking").show();
-			$(".mask-main").addClass("mask-main-active");
-		}
-	});
-	// 取消
-	$(".cancel-btn").click(function(){
-		$(".masking").hide();
-		$(".mask-main").removeClass("mask-main-active");
-	});
-	// 右上角关闭事件
-	$(".close-area").click(function(){
-		$(".masking").hide();
-		$(".mask-main").removeClass("mask-main-active");
-	});
+	
+	var date = new Date();
+	var year = date.getFullYear();
+	var month = date.getMonth() + 1;
+	var second = date.getSeconds();
+	var data = date.getDate();
 
-	// 弹框确认事件
-	$(".affirm-btn").click(function(){
-		$(".masking").hide();
-		$(".mask-main").removeClass("mask-main-active");
-	});
+	var dataJson = `["6",${data},"8","10"]`;
+	var dateArr = JSON.parse(dataJson);
+	//回填数据
+  $('.year').text(year);
+  $('.month').text(month);
+	console.log(dataJson);
+	datt(year,month,dateArr);
+	// datt(year,month,'',dateJson);
 
-	// 添加讲师事件
-	$(".addTea").click(function(){
-		isAdd = false;
-		if(!isAdd){
-			$(".add-btn-group").show();
-			$(".affirm-btn-group").hide();
-			$(".masking").show();
-			$(".mask-main").addClass("mask-main-active");
-		}
-	})
 	
 </script>	
 </body>
